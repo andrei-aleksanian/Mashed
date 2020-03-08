@@ -1,0 +1,34 @@
+package mashed.alertboxes;
+
+import mashed.gameplay.Gameplay;
+import mashed.scenes.MainMenu;
+
+public class ReadyToQuitAlertBox extends ReadyAlertBox{
+
+	public ReadyToQuitAlertBox(String message, String buttonText) {
+		super(message, buttonText);
+		
+		// What closeButton (the one that displays "Yes") does on action
+		button();
+		
+		// Display the alert box
+		display();
+	}
+	
+	private void button() {
+        	
+        	// When you click on the button that displays "Yes!"
+        	closeButton.setOnAction(e -> {
+        		
+        		// It closes the alert box window
+        		window.close();
+        		
+    			// Instantiate a main menu object (switch to main menu state)
+    			MainMenu mainMenu = new MainMenu();
+    			
+    			// Make health of both players equal to a 1000, to start the game from the start every time
+    			Gameplay.player1HP = Gameplay.player2HP = 1000;
+        	});
+        	
+     }
+}

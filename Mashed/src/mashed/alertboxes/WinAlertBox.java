@@ -1,0 +1,56 @@
+package mashed.alertboxes;
+
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import mashed.gameplay.Gameplay;
+import mashed.scenes.MainMenu;
+
+public class WinAlertBox extends AlertBox{
+
+	public WinAlertBox(String message, String buttonText) {
+		// Passes the message and text for the close button to the constructor of the superclass("AlertBox") 
+		super(message, buttonText);
+		
+		// If this alert box is displayed, the game is ended and the biggest hit should be found using bubblesort
+		Gameplay.bubbleSort(Gameplay.hits.size());
+		
+		// Make "biggestHit" equal to the last (and the biggest) element of the "hits" list 
+		int biggestHit = Gameplay.hits.get(Gameplay.hits.size()-1);
+		
+		// What button does if pressed
+		button();
+		
+		// Create menu object
+		layout(biggestHit);
+		
+		// Display the alert box
+		display();
+	}
+
+	private void button() {
+		
+		// When pressed
+		closeButton.setOnAction(e -> {
+			
+			// Close the window
+			window.close();
+			
+			// Switch to main menu state
+			MainMenu mainMenu = new MainMenu();
+		});
+	}
+
+	private void layout(int biggestHit) {	
+		
+		// Label displaying the greatest hit
+		Label label2 = new Label("The greatest hit was: " + biggestHit + " HP!");
+		
+        // Add label to the layout and button
+        layout.getChildren().add(label2);
+		
+        // Set coordinates to the layout elements
+		GridPane.setConstraints(label, 5, 0);
+		GridPane.setConstraints(label2, 5, 10);
+		GridPane.setConstraints(closeButton, 5, 25);
+	}
+}

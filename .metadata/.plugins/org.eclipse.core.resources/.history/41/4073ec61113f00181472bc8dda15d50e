@@ -1,0 +1,76 @@
+package mashed.scenes.subscenes.players;
+
+import mashed.gameplay.Gameplay;
+import mashed.gameplay.PlayerVSAI;
+
+public class PlayerAndAI extends Players{
+
+	public PlayerAndAI() {
+		// Set coordinates of buttons across x - axis in the layout in the superclass
+		super(10);
+		
+		// Create actions for the buttons on click
+		createActions();
+	}
+
+	private void createActions() {
+		
+		// When you click the head button
+		head.setOnAction(e -> {	
+			
+			// A gameplay method is invoked
+			PlayerVSAI.headButton();
+			
+			// If both players are alive
+			if(Gameplay.player1HP > 0 && Gameplay.player2HP > 0) {
+				
+				// Call gameplay "displayAlertBox" method
+				PlayerVSAI.displayAlertBox();
+				
+			//If someone's health is equal or less than 0
+			}else {
+				
+				// Make health of both players equal to a 1000, to start the game from the start every time
+				Gameplay.player1HP = Gameplay.player2HP = 1000;
+			}
+		});
+		
+		body.setOnAction(e -> {
+			
+			PlayerVSAI.bodyButton();
+			
+			// If both players are alive
+			if(Gameplay.player1HP > 0 && Gameplay.player2HP > 0) {
+				
+				// Call gameplay "displayAlertBox" method
+				PlayerVSAI.displayAlertBox();
+				
+			//If someone's health is equal or less than 0
+			}else {
+				
+				// Make health of both players equal to a 1000, to start the game from the start every time
+				Gameplay.player1HP = Gameplay.player2HP = 1000;
+			}
+		});
+		
+		legs.setOnAction(e -> {
+			
+			PlayerVSAI.legsButton();
+			
+			// If both players are alive
+			if(Gameplay.player1HP > 0 && Gameplay.player2HP > 0) {
+				
+				// Call gameplay "displayAlertBox" method
+				PlayerVSAI.displayAlertBox();
+				
+			//If someone's health is equal or less than 0
+			}else {
+				
+				// Make health of both players equal to a 1000, to start the game from the start every time
+				Gameplay.player1HP = Gameplay.player2HP = 1000;
+			}
+		});
+		
+	}
+	
+}
